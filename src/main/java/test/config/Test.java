@@ -43,6 +43,8 @@ public class Test {
     System.out.println(track);
     System.out.println(route);
 
+    System.out.println("--------------------------------------");
+
     // deserialize to internal model
     InternalModel tim = objectMapper.readValue(track, InternalModel.class);
     InternalModel pim = objectMapper.readValue(point, InternalModel.class);
@@ -51,7 +53,8 @@ public class Test {
     System.out.println(pim);
     System.out.println(rim);
 
-    /* -------------------------------------- */
+    System.out.println("--------------------------------------");
+
 
     System.out.println("Correct JSON");
     long start = System.currentTimeMillis();
