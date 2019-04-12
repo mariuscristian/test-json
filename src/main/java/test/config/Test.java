@@ -2,8 +2,10 @@ package test.config;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.UUID;
 import test.model.Point;
 import test.model.TrackSection;
 
@@ -37,6 +39,38 @@ public class Test {
         InternalModel pim = objectMapper.readValue(point, InternalModel.class);
         System.out.println(tim);
         System.out.println(pim);
+
+        /* -------------------------------------- */
+
+        System.out.println("Correct JSON");
+        long start = System.nanoTime();
+        long end, elapsed;
+        System.out.println("START   = "+start);
+        for (int i=0; i<100000; i++) {
+            if (i==10001) start = System.nanoTime();
+            try {
+                objectMapper.readValue(generateMariusMessage(), InternalModel.class);
+            } catch (IOException e) {
+            }
+        }
+        end = System.nanoTime();
+        elapsed = end - start;
+        System.out.println("END     = " + end + "\nELAPSED = " + elapsed);
+
+        System.out.println("Wong JSON");
+        start = System.nanoTime();
+        System.out.println("START   = "+start);
+        for (int i=0; i<100000; i++) {
+            if (i==10001) start = System.nanoTime();
+            try {
+                objectMapper.readValue(generateMariusMessageWrong(), InternalModel.class);
+            } catch (IOException e) {
+            }
+        }
+        end = System.nanoTime();
+        elapsed = end - start;
+        System.out.println("END     = " + end + "\nELAPSED = " + elapsed);
+
     }
 
     @JsonTypeInfo(
@@ -96,5 +130,117 @@ public class Test {
         public void setId(String id) {
             this.id = id;
         }
+    }
+
+
+    static String generateAdiMessage() {
+        return "{"
+            + "\"type\":\"Point\","
+            + "\"version\":\"1.0.0\","
+            + "\"data\":\"{\","
+            + "\"prop1\":\""
+            + UUID.randomUUID()
+            + "\","
+            + "\"prop2\":\""
+            + UUID.randomUUID()
+            + "\","
+            + "\"prop3\":\""
+            + UUID.randomUUID()
+            + "\","
+            + "\"prop4\":\""
+            + UUID.randomUUID()
+            + "\","
+            + "\"prop5\":\""
+            + UUID.randomUUID()
+            + "\","
+            + "\"prop6\":\""
+            + UUID.randomUUID()
+            + "\","
+            + "\"prop7\":\""
+            + UUID.randomUUID()
+            + "\","
+            + "\"prop8\":\""
+            + UUID.randomUUID()
+            + "\","
+            + "\"prop9\":\""
+            + UUID.randomUUID()
+            + "\","
+            + "\"prop10\":\""
+            + UUID.randomUUID()
+            + "\""
+            + "}}";
+    }
+
+    static String generateMariusMessage() {
+        return "{"
+            + "\"type\":\"Point\","
+            + "\"version\":\"1.0.0\","
+            + "\"prop1\":\""
+            + UUID.randomUUID()
+            + "\","
+            + "\"prop2\":\""
+            + UUID.randomUUID()
+            + "\","
+            + "\"prop3\":\""
+            + UUID.randomUUID()
+            + "\","
+            + "\"prop4\":\""
+            + UUID.randomUUID()
+            + "\","
+            + "\"prop5\":\""
+            + UUID.randomUUID()
+            + "\","
+            + "\"prop6\":\""
+            + UUID.randomUUID()
+            + "\","
+            + "\"prop7\":\""
+            + UUID.randomUUID()
+            + "\","
+            + "\"prop8\":\""
+            + UUID.randomUUID()
+            + "\","
+            + "\"prop9\":\""
+            + UUID.randomUUID()
+            + "\","
+            + "\"prop10\":\""
+            + UUID.randomUUID()
+            + "\""
+            + "}";
+    }
+    static String generateMariusMessageWrong() {
+        return "{"
+            + "\"type\":\"Bubu\","
+            + "\"version\":\"1.0.0\","
+            + "\"prop1\":\""
+            + UUID.randomUUID()
+            + "\","
+            + "\"prop2\":\""
+            + UUID.randomUUID()
+            + "\","
+            + "\"prop3\":\""
+            + UUID.randomUUID()
+            + "\","
+            + "\"prop4\":\""
+            + UUID.randomUUID()
+            + "\","
+            + "\"prop5\":\""
+            + UUID.randomUUID()
+            + "\","
+            + "\"prop6\":\""
+            + UUID.randomUUID()
+            + "\","
+            + "\"prop7\":\""
+            + UUID.randomUUID()
+            + "\","
+            + "\"prop8\":\""
+            + UUID.randomUUID()
+            + "\","
+            + "\"prop9\":\""
+            + UUID.randomUUID()
+            + "\","
+            + "\"prop10\":\""
+            + UUID.randomUUID()
+            + "\""
+            + "}";
     }
 }
