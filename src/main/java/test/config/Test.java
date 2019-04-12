@@ -3,7 +3,7 @@ package test.config;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.UUID;
-import test.mode.two.InternalModel;
+import test.model.two.InternalModel;
 import test.model.one.Point;
 import test.model.one.Route;
 import test.model.one.TrackSection;
@@ -28,7 +28,7 @@ public class Test {
     t.setMarking("none");
     t.setOccupation("free");
     t.setId("2");
-    t.setType("mimi");
+    t.setType("you can define the type twice no problem");
     Route r = new Route();
     r.setId("3");
     r.setType("shunting");

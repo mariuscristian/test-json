@@ -1,4 +1,4 @@
-package test.mode.two;
+package test.model.two;
 
 public class PointInternalModel extends InternalModel {
 
