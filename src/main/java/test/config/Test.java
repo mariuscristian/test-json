@@ -1,18 +1,24 @@
 package test.config;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
+import test.model.one.ParentElement;
 import test.model.two.InternalModel;
 import test.model.one.Point;
 import test.model.one.Route;
 import test.model.one.TrackSection;
 
 import java.io.IOException;
+import test.model.two.PointInternalModel;
 
 public class Test {
 
-  public static void main(String[] args) throws IOException {
+  public static void main(String[] args) throws JsonProcessingException {
     ObjectMapper objectMapper = new ObjectMapper();
     objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
@@ -29,11 +35,15 @@ public class Test {
     t.setOccupation("free");
     t.setId("2");
     t.setType("you can define the type twice no problem");
+    List<ParentElement> tl = new ArrayList<ParentElement>();
+    tl.add(t);
+    t.setId("3");
+    tl.add(t);
     Route r = new Route();
     r.setId("3");
     r.setType("shunting");
     r.setStatus("approached");
-    r.setApproachTrack(t);
+    r.setApproachTrack(tl);
 
     // serialize to json
     String point = objectMapper.writeValueAsString(p);
@@ -46,15 +56,29 @@ public class Test {
     System.out.println("--------------------------------------");
 
     // deserialize to internal model
-    InternalModel tim = objectMapper.readValue(track, InternalModel.class);
-    InternalModel pim = objectMapper.readValue(point, InternalModel.class);
-    InternalModel rim = objectMapper.readValue(route, InternalModel.class);
+    InternalModel tim = null;
+    try {
+      tim = objectMapper.readValue(track, InternalModel.class);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    InternalModel pim = null;
+    try {
+      pim = objectMapper.readValue(point, InternalModel.class);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    InternalModel rim = null;
+    try {
+      rim = objectMapper.readValue(route, InternalModel.class);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
     System.out.println(tim);
     System.out.println(pim);
     System.out.println(rim);
 
     System.out.println("--------------------------------------");
-
 
     System.out.println("Correct JSON");
     long start = System.currentTimeMillis();

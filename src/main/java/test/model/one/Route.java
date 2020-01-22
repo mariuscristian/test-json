@@ -1,15 +1,17 @@
 package test.model.one;
 
+import java.util.List;
+
 public class Route extends ParentElement {
 
   String status;
-  ParentElement approachTrack;
+  List<ParentElement> approachTrack;
 
-  public ParentElement getApproachTrack() {
+  public List<ParentElement> getApproachTrack() {
     return approachTrack;
   }
 
-  public void setApproachTrack(ParentElement approachTrack) {
+  public void setApproachTrack(List<ParentElement> approachTrack) {
     this.approachTrack = approachTrack;
   }
 
