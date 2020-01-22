@@ -1,9 +1,11 @@
 package test.model.two;
 
+import java.util.List;
+
 public class RouteInternalModel extends InternalModel {
 
   String id;
-  TrackInternalModel approachTrack;
+  List<TrackInternalModel> approachTrack;
 
   @Override
   public String toString() {
@@ -13,11 +15,11 @@ public class RouteInternalModel extends InternalModel {
         '}';
   }
 
-  public TrackInternalModel getApproachTrack() {
+  public List<TrackInternalModel> getApproachTrack() {
     return approachTrack;
   }
 
-  public void setApproachTrack(TrackInternalModel approachTrack) {
+  public void setApproachTrack(List<TrackInternalModel> approachTrack) {
     this.approachTrack = approachTrack;
   }
 

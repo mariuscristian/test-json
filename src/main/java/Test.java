@@ -1,5 +1,3 @@
-package test.config;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -80,10 +78,9 @@ public class Test {
 
     System.out.println("--------------------------------------");
 
-    System.out.println("Correct JSON");
+
     long start = System.currentTimeMillis();
     long end, elapsed;
-    System.out.println("START   = " + start);
     for (int i = 0; i < 100000; i++) {
       if (i == 10001) {
         start = System.currentTimeMillis();
@@ -95,11 +92,9 @@ public class Test {
     }
     end = System.currentTimeMillis();
     elapsed = end - start;
-    System.out.println("END     = " + end + "\nELAPSED = " + elapsed);
+    System.out.println("Correct JSON duration = " + elapsed);
 
-    System.out.println("Wong JSON");
     start = System.currentTimeMillis();
-    System.out.println("START   = " + start);
     for (int i = 0; i < 100000; i++) {
       if (i == 10001) {
         start = System.currentTimeMillis();
@@ -111,7 +106,7 @@ public class Test {
     }
     end = System.currentTimeMillis();
     elapsed = end - start;
-    System.out.println("END     = " + end + "\nELAPSED = " + elapsed);
+    System.out.println("Wrong JSON duration = " + elapsed);
 
   }
 
