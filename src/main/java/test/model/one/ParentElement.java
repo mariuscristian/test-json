@@ -3,11 +3,11 @@ package test.model.one;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = As.WRAPPER_OBJECT, property = "type")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = As.PROPERTY, property = "type")
 public class ParentElement {
 
-  String id;
-  String type; // you can use the same property name, no clash with JsonTypeInfo
+  private String id;
+  private String type; // you can use the same property name, no clash with JsonTypeInfo
 
   public String getType() {
     return type;

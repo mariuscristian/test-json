@@ -4,8 +4,7 @@ import java.util.List;
 
 public class RouteInternalModel extends InternalModel {
 
-  String id;
-  List<TrackInternalModel> approachTrack;
+  private List<InternalModel> approachTrack;
 
   @Override
   public String toString() {
@@ -15,11 +14,11 @@ public class RouteInternalModel extends InternalModel {
         '}';
   }
 
-  public List<TrackInternalModel> getApproachTrack() {
+  public List<InternalModel> getApproachTrack() {
     return approachTrack;
   }
 
-  public void setApproachTrack(List<TrackInternalModel> approachTrack) {
+  public void setApproachTrack(List<InternalModel> approachTrack) {
     this.approachTrack = approachTrack;
   }
 

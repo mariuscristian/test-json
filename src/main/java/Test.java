@@ -2,7 +2,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import test.model.one.ParentElement;
@@ -12,7 +11,6 @@ import test.model.one.Route;
 import test.model.one.TrackSection;
 
 import java.io.IOException;
-import test.model.two.PointInternalModel;
 
 public class Test {
 
