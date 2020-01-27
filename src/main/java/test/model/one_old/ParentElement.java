@@ -1,4 +1,4 @@
-package test.model.one;
+package test.model.one_old;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -29,5 +29,13 @@ public class ParentElement {
 
   public void setId(String id) {
     this.id = id;
+  }
+
+  @Override
+  public String toString() {
+    return "ParentElement{" +
+        "id='" + id + '\'' +
+        ", type='" + type + '\'' +
+        '}';
   }
 }
